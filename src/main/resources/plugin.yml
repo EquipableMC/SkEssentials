@@ -1,0 +1,9 @@
+name: SkEssentials
+version: '1.0-SNAPSHOT'
+main: site.equipable.skEssentials.SkEssentials
+api-version: '1.19'
+loadAfter: [Essentials]
+prefix: SkEssentials
+depend: [Skript, Essentials]
+author: Equipable
+website: https://github.com/EquipableMC/SkEssentials
