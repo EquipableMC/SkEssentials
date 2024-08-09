@@ -10,53 +10,56 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import com.earth2me.essentials.User;
-import net.ess3.api.events.AfkStatusChangeEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import site.equipable.skEssentials.SkEssentials;
 
-@Name("AFK Status Change")
-@Description("Set the player's AFK status.")
-@Examples({"mark player as idle"})
+@Name("Vanish Player")
+@Description("Vanish or unvanish a player.")
+@Examples({"vanish player"})
 @Since("INSERT VERSION")
-public class EffAfkStatus extends Effect {
+public class EffVanish extends Effect {
 
     static {
-        Skript.registerEffect(EffAfkStatus.class, "mark %players% as (afk|away from keyboard|idle)",
-                "mark %players% as not (afk|away from keyboard|idle)",
-                "(afk|away from keyboard|idle) %players%",
-                "un(afk|away from keyboard|idle) %players%");
+        Skript.registerEffect(EffVanish.class, "vanish %players%",
+                "unvanish %players%",
+                "make %players% vanish",
+                "make %players% unvanish");
     }
 
     private Expression<Player> players;
 
-    private boolean enable;
-    private boolean disable;
+    private boolean vanish;
+    private boolean unvanish;
+    private boolean makeVanish;
+    private boolean makeUnvanish;
 
     @Override
-    protected void execute(@NotNull Event event) {
+    protected void execute(Event event) {
         for (Player player : players.getArray(event)) {
             User user = SkEssentials.essentials.getUser(player);
-            if (enable) {
-                user.setAfk(true, AfkStatusChangeEvent.Cause.UNKNOWN);
-            } else if (disable) {
-                user.setAfk(false, AfkStatusChangeEvent.Cause.UNKNOWN);
+            if (vanish || makeVanish) {
+                user.setVanished(true);
+            }
+            if (unvanish || makeUnvanish) {
+                user.setVanished(false);
             }
         }
     }
 
     @Override
     public String toString(@Nullable Event event, boolean b) {
-        return "Afk Status";
+        return "vanish";
     }
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         players = (Expression<Player>) exprs[0];
-        enable = matchedPattern == 0;
-        disable = matchedPattern == 1;
+        vanish = matchedPattern == 0;
+        unvanish = matchedPattern == 1;
+        makeVanish = matchedPattern == 2;
+        makeUnvanish = matchedPattern == 3;
         return true;
     }
 }

@@ -1,37 +1,42 @@
 package site.equipable.skEssentials;
 
+import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
+import com.earth2me.essentials.Essentials;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import site.equipable.skEssentials.utils.Types;
 
 import java.io.IOException;
-import java.util.logging.Logger;
 
 public final class SkEssentials extends JavaPlugin {
 
     private static SkEssentials instance;
     private static boolean HAS_ESSENTIALS;
-    public final static Logger logger = Logger.getLogger(SkEssentials.class.getName());
-    private SkriptAddon skriptAddon;
+    private static SkriptAddon skriptAddon;
+    public static Essentials essentials;
 
 
     @Override
     public void onEnable() {
         // Plugin startup logic
         instance = this;
+        skriptAddon = Skript.registerAddon(this).setLanguageFileDirectory("lang");
+        Types.register();
 
         try {
-            logger.info("&6Loading SkEssentials by Equipable...");
-            skriptAddon.loadClasses("site.equipable.skEssentials.skript");
+            System.out.println("&6Loading SkEssentials by Equipable...");
             Plugin essentialsChecker = Bukkit.getServer().getPluginManager().getPlugin("Essentials");
 
             if (essentialsChecker != null) {
                 HAS_ESSENTIALS = true;
-                logger.info( "&aEssentials was successfully found!");
+                System.out.println( "&aEssentials was successfully found!");
+                essentials = (Essentials) Bukkit.getServer().getPluginManager().getPlugin("Essentials");
+                skriptAddon.loadClasses("site.equipable.skEssentials.skript");
             } else {
-                logger.severe("Could not find Essentials! Is it up to date? Disabling SkEssentials...");
+                getLogger().severe("Could not find Essentials! Is it up to date? Disabling SkEssentials...");
                 getServer().getPluginManager().disablePlugin(this);
             }
 
@@ -39,14 +44,10 @@ public final class SkEssentials extends JavaPlugin {
             throw new RuntimeException("Failed to load SkEssentials:" + e);
         }
 
-
-    }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-
-        logger.info("&6Shutting down SkEssentials, goodbye...");
+        if (!Skript.isAcceptRegistrations()) {
+            getLogger().severe("Skript is not accepting registrations! Please do not attempt to use /reload or any plugin that reloads other plugins! Disabling...");
+            getServer().getPluginManager().disablePlugin(this);
+        }
 
     }
 }
