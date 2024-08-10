@@ -3,6 +3,7 @@ package site.equipable.skEssentials;
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import com.earth2me.essentials.Essentials;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,6 +22,10 @@ public final class SkEssentials extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+
+        int pluginID = 22965;
+        Metrics metrics = new Metrics(this, pluginID);
+
         instance = this;
         skriptAddon = Skript.registerAddon(this).setLanguageFileDirectory("lang");
 
