@@ -18,7 +18,7 @@ public class EvtBalanceChange extends SkriptEvent {
         Skript.registerEvent("Essentials Player Balance Change", EvtBalanceChange.class, UserBalanceUpdateEvent.class, "[essentials|essentialsx] [player] (bal|balance) change")
                 .description("Fired when a player's balance changes with Essentials.")
                 .examples("on player balance change:")
-                .since("INSERT VERSION");
+                .since("1.0.0");
         EventValues.registerEventValue(UserBalanceUpdateEvent.class, Number.class, new Getter<Number, UserBalanceUpdateEvent>() {
             public @NotNull Number get(final UserBalanceUpdateEvent event) {
                 if (event != null) {

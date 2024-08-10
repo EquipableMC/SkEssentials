@@ -18,7 +18,7 @@ import site.equipable.skEssentials.SkEssentials;
 @Name("Vanish Player")
 @Description("Vanish or unvanish a player.")
 @Examples({"vanish player"})
-@Since("INSERT VERSION")
+@Since("1.0.0")
 public class EffVanish extends Effect {
 
     static {

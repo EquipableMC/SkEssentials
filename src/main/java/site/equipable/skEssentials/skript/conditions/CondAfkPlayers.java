@@ -12,7 +12,7 @@ import site.equipable.skEssentials.SkEssentials;
 @Name("Cond Afk Players")
 @Description("This is used to check a player's afk status.\n True = They are afk, False = they are not afk.")
 @Examples({"if afk mode of player is true:"})
-@Since("INSERT VERSION")
+@Since("1.0.0")
 public class CondAfkPlayers extends PropertyCondition {
 
     static {

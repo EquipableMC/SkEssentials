@@ -20,7 +20,7 @@ import site.equipable.skEssentials.SkEssentials;
 @Name("AFK Status Change")
 @Description("Set the player's AFK status.")
 @Examples({"mark player as idle"})
-@Since("INSERT VERSION")
+@Since("1.0.0")
 public class EffAfkStatus extends Effect {
 
     static {

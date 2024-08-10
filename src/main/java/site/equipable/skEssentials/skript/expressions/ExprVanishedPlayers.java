@@ -13,7 +13,7 @@ import site.equipable.skEssentials.SkEssentials;
 @Name("All Vanished Players")
 @Description("Returns the name of all players who are vanished")
 @Examples({"send \"%vanished state of all players%\""})
-@Since("INSERT VERSION")
+@Since("1.0.0")
 public class ExprVanishedPlayers extends SimplePropertyExpression<Player, Player> {
 
     static {

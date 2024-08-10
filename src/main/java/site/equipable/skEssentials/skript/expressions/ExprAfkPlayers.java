@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 @Name("All AFK Players")
 @Description("Returns the name of all players who are afk.")
 @Examples({"send \"%afk mode of all players%\""})
-@Since("INSERT VERSION")
+@Since("1.0.0")
 public class ExprAfkPlayers extends SimplePropertyExpression<Player, Player> {
 
     static {

@@ -18,7 +18,7 @@ import site.equipable.skEssentials.SkEssentials;
 @Name("God Player")
 @Description("God or ungod a player.")
 @Examples({"god player"})
-@Since("INSERT VERSION")
+@Since("1.0.0")
 public class EffGod extends Effect {
 
     static {

@@ -18,7 +18,7 @@ import site.equipable.skEssentials.SkEssentials;
 @Name("Afk players")
 @Description("All players that are currently Afk.")
 @Examples({"send \"Size of all afk players: %size of all afk players%\""})
-@Since("INSERT VERSION")
+@Since("1.0.0")
 public class ExprSizeAfkPlayers extends SimpleExpression<Integer> {
 
     static {

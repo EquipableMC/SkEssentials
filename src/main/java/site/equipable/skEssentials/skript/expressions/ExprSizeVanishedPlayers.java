@@ -19,7 +19,7 @@ import site.equipable.skEssentials.SkEssentials;
 @Name("Vanished players")
 @Description("All players that are currently in vanish.")
 @Examples({"send \"Size of all vanished players: %size of all vanished players%\""})
-@Since("INSERT VERSION")
+@Since("1.0.0")
 public class ExprSizeVanishedPlayers extends SimpleExpression<Integer> {
 
     static {
