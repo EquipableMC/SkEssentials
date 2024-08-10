@@ -1,3 +1,5 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
 plugins {
     id 'java'
 }
@@ -56,4 +58,5 @@ processResources {
     filesMatching('plugin.yml') {
         expand props
     }
+    filter ReplaceTokens, tokens: ["version": project.version]
 }

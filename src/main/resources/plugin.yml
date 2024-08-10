@@ -1,5 +1,5 @@
 name: SkEssentials
-version: @version@
+version: '@version@'
 main: site.equipable.skEssentials.SkEssentials
 api-version: '1.19'
 loadAfter: [Essentials]
