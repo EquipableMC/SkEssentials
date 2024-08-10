@@ -1,11 +1,11 @@
-package site.equipable.skEssentials.utils;
+package site.equipable.skEssentials.skript.utils;
 
 import ch.njol.skript.registrations.Classes;
 import net.ess3.api.events.AfkStatusChangeEvent.Cause;
 
 public class Types {
 
-    public static void register() {
+    static {
         EnumWrapper<Cause> AFK_CAUSE_ENUM = new EnumWrapper<>(Cause.class, "afk", null);
         Classes.registerClass(AFK_CAUSE_ENUM.getClassInfo("afkcause")
                 .user("afk ?causes?")

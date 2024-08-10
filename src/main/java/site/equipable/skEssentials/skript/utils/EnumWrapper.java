@@ -1,4 +1,4 @@
-package site.equipable.skEssentials.utils;
+package site.equipable.skEssentials.skript.utils;
 
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.Parser;

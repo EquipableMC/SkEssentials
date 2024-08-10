@@ -4,10 +4,9 @@ import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import com.earth2me.essentials.Essentials;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import site.equipable.skEssentials.utils.Types;
+import site.equipable.skEssentials.skript.utils.Utilities;
 
 import java.io.IOException;
 
@@ -24,15 +23,14 @@ public final class SkEssentials extends JavaPlugin {
         // Plugin startup logic
         instance = this;
         skriptAddon = Skript.registerAddon(this).setLanguageFileDirectory("lang");
-        Types.register();
 
         try {
-            System.out.println("&6Loading SkEssentials by Equipable...");
+            Utilities.log("&6Loading SkEssentials by Equipable...");
             Plugin essentialsChecker = Bukkit.getServer().getPluginManager().getPlugin("Essentials");
 
             if (essentialsChecker != null) {
                 HAS_ESSENTIALS = true;
-                System.out.println( "&aEssentials was successfully found!");
+                Utilities.log( "&aEssentials was successfully found!");
                 essentials = (Essentials) Bukkit.getServer().getPluginManager().getPlugin("Essentials");
                 skriptAddon.loadClasses("site.equipable.skEssentials.skript");
             } else {
