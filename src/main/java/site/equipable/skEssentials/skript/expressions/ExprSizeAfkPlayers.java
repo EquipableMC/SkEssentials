@@ -52,6 +52,6 @@ public class ExprSizeAfkPlayers extends SimpleExpression<Integer> {
 
     @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, ParseResult parseResult) {
-        return false;
+        return true;
     }
 }

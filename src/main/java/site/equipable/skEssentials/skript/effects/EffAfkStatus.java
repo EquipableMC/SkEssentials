@@ -24,26 +24,23 @@ import site.equipable.skEssentials.SkEssentials;
 public class EffAfkStatus extends Effect {
 
     static {
-        Skript.registerEffect(EffAfkStatus.class, "mark %players% as (afk|away from keyboard|idle)",
+        Skript.registerEffect(EffAfkStatus.class, "mark %players% as (afk|away from keyboard|idle) [(with reason|because [of]) %-string%]",
+                "(afk|away from keyboard|idle) %players% [(with reason|because [of]) %-string%]",
                 "mark %players% as not (afk|away from keyboard|idle)",
-                "(afk|away from keyboard|idle) %players%",
                 "un(afk|away from keyboard|idle) %players%");
     }
 
     private Expression<Player> players;
+    private Expression<String> afkmessage;
 
     private boolean enable;
-    private boolean disable;
 
     @Override
     protected void execute(@NotNull Event event) {
         for (Player player : players.getArray(event)) {
             User user = SkEssentials.essentials.getUser(player);
-            if (enable) {
-                user.setAfk(true, AfkStatusChangeEvent.Cause.UNKNOWN);
-            } else if (disable) {
-                user.setAfk(false, AfkStatusChangeEvent.Cause.UNKNOWN);
-            }
+            user.setAfk(this.enable);
+            user.setAfkMessage(String.valueOf(afkmessage));
         }
     }
 
@@ -55,8 +52,8 @@ public class EffAfkStatus extends Effect {
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         players = (Expression<Player>) exprs[0];
-        enable = matchedPattern == 0;
-        disable = matchedPattern == 1;
+        enable = matchedPattern < 2;
+        afkmessage = (Expression<String>) exprs[1];
         return true;
     }
 }

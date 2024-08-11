@@ -13,19 +13,17 @@ import site.equipable.skEssentials.SkEssentials;
 @Description("This is used to check a player's afk status.\n True = They are afk, False = they are not afk.")
 @Examples({"if afk mode of player is true:"})
 @Since("1.0.0")
-public class CondAfkPlayers extends PropertyCondition {
+public class CondAfkPlayers extends PropertyCondition<Player> {
 
     static {
         register(CondAfkPlayers.class, "(afk|away from keyboard|idle) (mode|status|state)", "players");
     }
 
+
     @Override
-    public boolean check(Object o) {
-        if (o instanceof Player) {
-            User user = SkEssentials.essentials.getUser(o);
-            return user.isAfk();
-        }
-        return false;
+    public boolean check(Player player) {
+        User user = SkEssentials.essentials.getUser(player);
+        return user.isAfk();
     }
 
     @Override

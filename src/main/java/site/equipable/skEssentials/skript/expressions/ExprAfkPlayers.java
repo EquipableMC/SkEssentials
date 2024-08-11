@@ -10,6 +10,7 @@ import com.earth2me.essentials.User;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
+import site.equipable.skEssentials.SkEssentials;
 
 @Name("All AFK Players")
 @Description("Returns the name of all players who are afk.")
@@ -28,8 +29,7 @@ public class ExprAfkPlayers extends SimplePropertyExpression<Player, Player> {
 
     @Override
     public @Nullable Player convert(Player player) {
-        Essentials essentials = (Essentials) Bukkit.getServer().getPluginManager().getPlugin("Essentials");
-        User user = essentials.getUser(player);
+        User user = SkEssentials.essentials.getUser(player);
         if (user.isAfk()) {
             return player;
         }

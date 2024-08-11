@@ -2,7 +2,7 @@ name: SkEssentials
 version: '@version@'
 main: site.equipable.skEssentials.SkEssentials
 api-version: '1.19'
-loadAfter: [Essentials]
+loadAfter: [Skript]
 prefix: SkEssentials
 depend: [Skript, Essentials]
 author: Equipable

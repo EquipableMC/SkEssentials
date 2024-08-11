@@ -2,15 +2,7 @@ package site.equipable.skEssentials.skript.utils;
 
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
-
 import java.util.regex.Matcher;
-
-/**
- * @author cheeezburga
- *
- * Parts of this was taken from his Utils.java. All credits to him. I only modified it to make it fit with my plugin
- * <a href="https://github.com/cheeezburga/SkWE/blob/master/src/main/java/me/cheezburga/skwe/api/utils/Utils.java">...</a>
- */
 
 public class Utilities {
 
@@ -18,10 +10,36 @@ public class Utilities {
     private static final boolean SKRIPT_EXISTS = Bukkit.getPluginManager().getPlugin("Skript") != null;
     private static final java.util.regex.Pattern HEX_PATTERN = java.util.regex.Pattern.compile("<#([A-Fa-f\\d]){6}>");
 
+    /**
+     * Method to log a coloured message to the console.
+     * <p>
+     *     This method is copied from SkBee.
+     *     <a href="https://github.com/ShaneBeee/SkBee/blob/f6f85e3d9d9da0cd772b58e59fc288f7d1ec21f8/src/main/java/com/shanebeestudios/skbee/api/util/Util.java#L55">log(format, objects)</a>
+     * </p>
+     *
+     * @author ShaneBee
+     *
+     * @param format The format for the log.
+     * @param objects The arguments for the log.
+     */
+
     public static void log(String format, Object... objects) {
         String log = String.format(format, objects);
         Bukkit.getConsoleSender().sendMessage(getColouredString(PLUGIN_PREFIX + " " + log));
     }
+
+    /**
+     * Method to get a coloured string from a string.
+     * <p>
+     *     This method is copied from SkBee.
+     *     <a href="https://github.com/ShaneBeee/SkBee/blob/f6f85e3d9d9da0cd772b58e59fc288f7d1ec21f8/src/main/java/com/shanebeestudios/skbee/api/util/Util.java#L35">getColString(string)</a>
+     * </p>
+     *
+     * @author ShaneBee
+     *
+     * @param string The string to convert to it's coloured version.
+     * @return The coloured string.
+     */
 
     @SuppressWarnings("deprecation") // Paper deprecation
     public static String getColouredString(String string) {

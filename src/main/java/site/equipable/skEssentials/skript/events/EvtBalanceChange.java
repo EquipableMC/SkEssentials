@@ -41,7 +41,7 @@ public class EvtBalanceChange extends SkriptEvent {
     @Override
     @SuppressWarnings({"NullableProblems"})
     public boolean init(Literal<?>[] args, int matchedPattern, SkriptParser.ParseResult parseResult) {
-        return false;
+        return true;
     }
 
     @Override

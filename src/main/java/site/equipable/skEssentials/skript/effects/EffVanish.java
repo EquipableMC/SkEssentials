@@ -23,8 +23,8 @@ public class EffVanish extends Effect {
 
     static {
         Skript.registerEffect(EffVanish.class, "vanish %players%",
-                "unvanish %players%",
                 "make %players% vanish",
+                "unvanish %players%",
                 "make %players% unvanish");
     }
 
@@ -32,8 +32,6 @@ public class EffVanish extends Effect {
 
     private boolean vanish;
     private boolean unvanish;
-    private boolean makeVanish;
-    private boolean makeUnvanish;
 
     @Override
     protected void execute(Event event) {
@@ -56,10 +54,8 @@ public class EffVanish extends Effect {
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         players = (Expression<Player>) exprs[0];
-        vanish = matchedPattern == 0;
-        unvanish = matchedPattern == 1;
-        makeVanish = matchedPattern == 2;
-        makeUnvanish = matchedPattern == 3;
+        vanish = matchedPattern <= 1;
+        unvanish = matchedPattern >= 2;
         return true;
     }
 }

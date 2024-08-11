@@ -54,6 +54,6 @@ public class ExprSizeVanishedPlayers extends SimpleExpression<Integer> {
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
-        return false;
+        return true;
     }
 }
