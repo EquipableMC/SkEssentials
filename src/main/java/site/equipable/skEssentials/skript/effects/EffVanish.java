@@ -37,10 +37,10 @@ public class EffVanish extends Effect {
     protected void execute(Event event) {
         for (Player player : players.getArray(event)) {
             User user = SkEssentials.essentials.getUser(player);
-            if (vanish || makeVanish) {
+            if (vanish) {
                 user.setVanished(true);
             }
-            if (unvanish || makeUnvanish) {
+            if (unvanish) {
                 user.setVanished(false);
             }
         }
