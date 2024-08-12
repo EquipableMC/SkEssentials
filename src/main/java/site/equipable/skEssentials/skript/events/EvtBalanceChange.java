@@ -1,18 +1,15 @@
 package site.equipable.skEssentials.skript.events;
 
 import ch.njol.skript.Skript;
-import ch.njol.skript.lang.Literal;
-import ch.njol.skript.lang.SkriptEvent;
-import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import net.ess3.api.events.UserBalanceUpdateEvent;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.NotNull;
 
-public class EvtBalanceChange extends SkriptEvent {
+public class EvtBalanceChange extends SimpleEvent {
 
     static {
         Skript.registerEvent("Essentials Player Balance Change", EvtBalanceChange.class, UserBalanceUpdateEvent.class, "[essentials|essentialsx] [player] (bal|balance) change")
@@ -36,25 +33,5 @@ public class EvtBalanceChange extends SkriptEvent {
                 return null;
             }
         }, EventValues.TIME_NOW);
-    }
-
-    @Override
-    @SuppressWarnings({"NullableProblems"})
-    public boolean init(Literal<?>[] args, int matchedPattern, SkriptParser.ParseResult parseResult) {
-        return true;
-    }
-
-    @Override
-    public boolean check(Event event) {
-        if (event instanceof UserBalanceUpdateEvent) {
-            return true;
-        }
-        return false;
-    }
-
-
-    @Override
-    public String toString(@Nullable Event e, boolean debug) {
-        return "essentials player balance change";
     }
 }

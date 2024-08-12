@@ -13,6 +13,4 @@ public class Types {
                 .description("All the supported AFK causes in Essentials")
                 .since("1.0.0"));
     }
-
-
 }
