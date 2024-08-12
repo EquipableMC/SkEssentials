@@ -1,7 +1,8 @@
-package site.equipable.skEssentials.skript.utils;
+package site.equipable.skEssentials.skript.types;
 
 import ch.njol.skript.registrations.Classes;
 import net.ess3.api.events.AfkStatusChangeEvent.Cause;
+import site.equipable.skEssentials.skript.utils.EnumWrapper;
 
 public class Types {
 
