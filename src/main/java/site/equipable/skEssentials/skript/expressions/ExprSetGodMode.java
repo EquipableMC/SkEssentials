@@ -1,6 +1,10 @@
 package site.equipable.skEssentials.skript.expressions;
 
 import ch.njol.skript.classes.Changer;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.skript.lang.Expression;
 import ch.njol.util.coll.CollectionUtils;
@@ -13,6 +17,11 @@ import site.equipable.skEssentials.SkEssentials;
 
 import java.util.Map;
 
+
+@Name("Set Player's God Mode")
+@Description("Set the essentials god mode of a player to true or false")
+@Examples({"set god mode state of player to true"})
+@Since("1.0.0")
 public class ExprSetGodMode extends SimplePropertyExpression<Player, Boolean> {
 
     static {

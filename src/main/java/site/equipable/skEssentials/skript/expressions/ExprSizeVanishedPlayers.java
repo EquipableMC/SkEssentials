@@ -11,7 +11,10 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import com.earth2me.essentials.User;
+import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
+import org.bukkit.entity.Player;
+import org.bukkit.metadata.MetadataValue;
 import org.jetbrains.annotations.Nullable;
 import site.equipable.skEssentials.SkEssentials;
 
@@ -29,9 +32,13 @@ public class ExprSizeVanishedPlayers extends SimpleExpression<Integer> {
     @Override
     protected @Nullable Integer[] get(Event e) {
 
-        long allVanishedPlayers = SkEssentials.essentials.getOnlinePlayers().stream()
-                .map(SkEssentials.essentials::getUser)
-                .filter(User::isVanished)
+        long allVanishedPlayers = Bukkit.getOnlinePlayers().stream()
+                .filter(player -> player.hasMetadata("vanished"))
+                .map(player -> player.getMetadata("vanished").stream()
+                        .filter(MetadataValue::asBoolean)
+                        .findFirst()
+                        .orElse(null))
+                .filter(metadataValue -> metadataValue != null)
                 .count();
         
         return new Integer[]{(int) allVanishedPlayers};
