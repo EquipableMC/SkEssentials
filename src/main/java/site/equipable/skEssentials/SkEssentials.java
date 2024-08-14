@@ -35,7 +35,7 @@ public final class SkEssentials extends JavaPlugin {
             Plugin essentialsChecker = Bukkit.getServer().getPluginManager().getPlugin("Essentials");
 
             if (essentialsChecker != null) {
-                Utilities.log( "&aEssentials was successfully found!");
+                Utilities.log("&aEssentials was successfully found!");
                 essentials = (Essentials) Bukkit.getServer().getPluginManager().getPlugin("Essentials");
                 skriptAddon.loadClasses("site.equipable.skEssentials.skript");
             } else {

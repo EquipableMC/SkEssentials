@@ -15,41 +15,39 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 import site.equipable.skEssentials.SkEssentials;
 
-@Name("Vanish Player")
-@Description("Vanish or unvanish a player.")
-@Examples({"vanish player"})
+@Name("God Mode")
+@Description("Enable or disable a player's god mode")
+@Examples({"enable god mode of player"})
 @Since("1.0.0")
-public class EffVanish extends Effect {
+public class EffGod extends Effect {
 
     static {
-        Skript.registerEffect(EffVanish.class,
-                "vanish %players%",
-                "make %players% vanish",
-                "unvanish %players%",
-                "make %players% unvanish");
+        Skript.registerEffect(EffGod.class,
+                "enable god mode (for|of) %players%",
+                "disable god mode (for|of) %players%");
     }
 
     private Expression<Player> players;
 
-    private boolean vanish;
+    private boolean god;
 
     @Override
     protected void execute(Event event) {
         for (Player player : players.getArray(event)) {
             User user = SkEssentials.essentials.getUser(player);
-            user.setVanished(vanish);
+            user.setGodModeEnabled(god);
         }
     }
 
     @Override
     public String toString(@Nullable Event event, boolean b) {
-        return "vanish" + players.toString(event, b);
+        return "god mode of" + players.toString(event, b);
     }
 
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         players = (Expression<Player>) exprs[0];
-        vanish = matchedPattern < 2;
+        god = matchedPattern < 1;
         return true;
     }
 }

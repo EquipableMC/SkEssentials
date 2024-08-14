@@ -6,28 +6,28 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
 import site.equipable.skEssentials.SkEssentials;
 
-public class ExprAfkPlayers extends SimplePropertyExpression<Player, Boolean> {
+public class ExprAfkPlayers extends SimplePropertyExpression<Player, Player> {
 
     static {
-        register(ExprAfkPlayers.class, Boolean.class, "(afk|away from keyboard|idle) (mode|status|state)", "players");
+        register(ExprAfkPlayers.class, Player.class, "(afk|away from keyboard|idle) (mode|status|state)", "players");
     }
 
     @Override
     protected String getPropertyName() {
-        return "Expression AFK Players check";
+        return "AFK Players";
     }
 
     @Override
-    public @Nullable Boolean convert(Player player) {
+    public @Nullable Player convert(Player player) {
         User user = SkEssentials.essentials.getUser(player);
         if (user.isAfk()) {
-            return true;
+            return player.getPlayer();
         }
-        return false;
+        return null;
     }
 
     @Override
-    public Class<? extends Boolean> getReturnType() {
-        return Boolean.class;
+    public Class<? extends Player> getReturnType() {
+        return Player.class;
     }
 }

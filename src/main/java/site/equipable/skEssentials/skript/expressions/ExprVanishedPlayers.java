@@ -17,19 +17,19 @@ import site.equipable.skEssentials.SkEssentials;
 public class ExprVanishedPlayers extends SimplePropertyExpression<Player, Player> {
 
     static {
-        register(ExprVanishedPlayers.class, Player.class, "vanish[ed] (mode|status|state)", "players");
+        register(ExprVanishedPlayers.class, Player.class, "vanish[ed]", "players");
     }
 
     @Override
     protected String getPropertyName() {
-        return "";
+        return "name of all vanished players";
     }
 
     @Override
     public @Nullable Player convert(Player player) {
         User user = SkEssentials.essentials.getUser(player);
         if (user.isVanished()) {
-            return player;
+            return player.getPlayer();
         }
         return null;
     }

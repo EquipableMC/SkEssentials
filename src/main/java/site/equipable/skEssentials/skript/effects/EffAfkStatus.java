@@ -43,13 +43,13 @@ public class EffAfkStatus extends Effect {
             User user = SkEssentials.essentials.getUser(player);
             if (afkMessage != null)
                 user.setAfkMessage(afkMessage);
-            user.setAfk(true);
+            user.setAfk(enable);
         }
     }
 
     @Override
     public String toString(@Nullable Event event, boolean b) {
-        return "Afk Status";
+        return "mark" + players.toString(event, b) + " afk with message" + afkMessage.toString(event, b);
     }
 
     @Override
