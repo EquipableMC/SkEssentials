@@ -23,7 +23,10 @@ public class CondVanished extends PropertyCondition<Player> {
     @Override
     public boolean check(Player player) {
         User user = SkEssentials.essentials.getUser(player);
-        return user.isVanished();
+        if (user != null) {
+            return user.isVanished();
+        }
+        return false;
     }
 
     @Override

@@ -22,7 +22,10 @@ public class CondAfk extends PropertyCondition<Player> {
     @Override
     public boolean check(Player player) {
         User user = SkEssentials.essentials.getUser(player);
-        return user.isAfk();
+        if (user != null) {
+            return user.isAfk();
+        }
+        return false;
     }
 
     @Override

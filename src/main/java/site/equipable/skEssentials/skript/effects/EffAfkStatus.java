@@ -34,16 +34,19 @@ public class EffAfkStatus extends Effect {
     @UnknownNullability
     private Expression<String> afkMessage;
 
-    private boolean enable;
+    private boolean afk;
 
     @Override
     protected void execute(@NotNull Event event) {
         String afkMessage = this.afkMessage != null ? this.afkMessage.getSingle(event) : null;
         for (Player player : players.getArray(event)) {
             User user = SkEssentials.essentials.getUser(player);
-            if (afkMessage != null)
-                user.setAfkMessage(afkMessage);
-            user.setAfk(enable);
+            if (user != null) {
+                if (afkMessage != null) {
+                    user.setAfkMessage(afkMessage);
+                }
+                user.setAfk(afk);
+            }
         }
     }
 
@@ -55,7 +58,7 @@ public class EffAfkStatus extends Effect {
     @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
         players = (Expression<Player>) exprs[0];
-        enable = matchedPattern < 2;
+        afk = matchedPattern < 2;
         if (matchedPattern < 2) {
             afkMessage = (Expression<String>) exprs[1];
         }

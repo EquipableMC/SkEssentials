@@ -8,6 +8,7 @@ import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import com.earth2me.essentials.User;
 import org.bukkit.entity.Player;
@@ -35,7 +36,9 @@ public class EffGod extends Effect {
     protected void execute(Event event) {
         for (Player player : players.getArray(event)) {
             User user = SkEssentials.essentials.getUser(player);
-            user.setGodModeEnabled(god);
+            if (user != null) {
+                user.setGodModeEnabled(god);
+            }
         }
     }
 
@@ -45,7 +48,7 @@ public class EffGod extends Effect {
     }
 
     @Override
-    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
         players = (Expression<Player>) exprs[0];
         god = matchedPattern < 1;
         return true;

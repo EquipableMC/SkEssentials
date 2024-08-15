@@ -8,6 +8,7 @@ import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import com.earth2me.essentials.User;
 import org.bukkit.entity.Player;
@@ -37,7 +38,9 @@ public class EffVanish extends Effect {
     protected void execute(Event event) {
         for (Player player : players.getArray(event)) {
             User user = SkEssentials.essentials.getUser(player);
-            user.setVanished(vanish);
+            if (user != null) {
+                user.setVanished(vanish);
+            }
         }
     }
 
@@ -47,7 +50,7 @@ public class EffVanish extends Effect {
     }
 
     @Override
-    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
         players = (Expression<Player>) exprs[0];
         vanish = matchedPattern < 2;
         return true;
