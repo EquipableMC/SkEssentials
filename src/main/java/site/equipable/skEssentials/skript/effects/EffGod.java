@@ -33,6 +33,13 @@ public class EffGod extends Effect {
     private boolean god;
 
     @Override
+    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
+        players = (Expression<Player>) exprs[0];
+        god = matchedPattern < 1;
+        return true;
+    }
+
+    @Override
     protected void execute(Event event) {
         for (Player player : players.getArray(event)) {
             User user = SkEssentials.essentials.getUser(player);
@@ -40,13 +47,6 @@ public class EffGod extends Effect {
                 user.setGodModeEnabled(god);
             }
         }
-    }
-
-    @Override
-    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
-        players = (Expression<Player>) exprs[0];
-        god = matchedPattern < 1;
-        return true;
     }
 
     @Override

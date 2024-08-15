@@ -32,6 +32,11 @@ public class ExprVanishedPlayers extends SimpleExpression<Player> {
     }
 
     @Override
+    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
+        return true;
+    }
+    
+    @Override
     protected @Nullable Player[] get(Event event) {
         List<Player> vanishedPlayers = new ArrayList<>();
         for (Player player : Bukkit.getOnlinePlayers()) {
@@ -53,11 +58,6 @@ public class ExprVanishedPlayers extends SimpleExpression<Player> {
     @Override
     public Class<? extends Player> getReturnType() {
         return Player.class;
-    }
-
-    @Override
-    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
-        return true;
     }
 
     @Override
