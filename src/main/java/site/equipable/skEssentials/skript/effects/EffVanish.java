@@ -52,7 +52,7 @@ public class EffVanish extends Effect {
     }
 
     @Override
-    public String toString(@Nullable Event event, boolean b) {
-        return "vanish" + players.toString(event, b);
+    public String toString(@Nullable Event event, boolean debug) {
+        return "vanish " + players.toString(event, debug);
     }
 }

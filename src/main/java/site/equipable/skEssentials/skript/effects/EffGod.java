@@ -50,7 +50,7 @@ public class EffGod extends Effect {
     }
 
     @Override
-    public String toString(@Nullable Event event, boolean b) {
-        return "god mode of" + players.toString(event, b);
+    public String toString(@Nullable Event event, boolean debug) {
+        return "god mode of " + players.toString(event,debug);
     }
 }

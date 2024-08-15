@@ -35,7 +35,7 @@ public class ExprVanishedPlayers extends SimpleExpression<Player> {
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
         return true;
     }
-    
+
     @Override
     protected @Nullable Player[] get(Event event) {
         List<Player> vanishedPlayers = new ArrayList<>();
@@ -61,7 +61,7 @@ public class ExprVanishedPlayers extends SimpleExpression<Player> {
     }
 
     @Override
-    public String toString(@Nullable Event event, boolean b) {
+    public String toString(@Nullable Event event, boolean debug) {
         return "all vanished players";
     }
 }

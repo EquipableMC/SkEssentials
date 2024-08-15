@@ -62,7 +62,7 @@ public class ExprAfkPlayers extends SimpleExpression<Player> {
     }
 
     @Override
-    public String toString(@Nullable Event event, boolean b) {
+    public String toString(@Nullable Event event, boolean debug) {
         return "all afk players";
     }
 }

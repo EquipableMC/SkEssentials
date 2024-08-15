@@ -60,7 +60,7 @@ public class EffAfkStatus extends Effect {
         }
     }
     @Override
-    public String toString(@Nullable Event event, boolean b) {
-        return "mark" + players.toString(event, b) + " afk with message" + afkMessage.toString(event, b);
+    public String toString(@Nullable Event event, boolean debug) {
+        return "mark " + players.toString(event, debug) + " afk with message " + afkMessage.toString(event, debug);
     }
 }
