@@ -33,6 +33,11 @@ public class ExprAfkPlayers extends SimpleExpression<Player> {
     }
 
     @Override
+    public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, ParseResult parseResult) {
+        return true;
+    }
+
+    @Override
     protected @Nullable Player[] get(Event event) {
         List<Player> afkPlayers = new ArrayList<>();
         for (Player player : Bukkit.getOnlinePlayers()) {
@@ -57,12 +62,7 @@ public class ExprAfkPlayers extends SimpleExpression<Player> {
     }
 
     @Override
-    public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, ParseResult parseResult) {
-        return true;
-    }
-
-    @Override
-    public String toString(@Nullable Event event, boolean b) {
+    public String toString(@Nullable Event event, boolean debug) {
         return "all afk players";
     }
 }
