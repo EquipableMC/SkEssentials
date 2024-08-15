@@ -51,11 +51,6 @@ public class EffAfkStatus extends Effect {
     }
 
     @Override
-    public String toString(@Nullable Event event, boolean b) {
-        return "mark" + players.toString(event, b) + " afk with message" + afkMessage.toString(event, b);
-    }
-
-    @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
         players = (Expression<Player>) exprs[0];
         afk = matchedPattern < 2;
@@ -63,5 +58,10 @@ public class EffAfkStatus extends Effect {
             afkMessage = (Expression<String>) exprs[1];
         }
         return true;
+    }
+
+    @Override
+    public String toString(@Nullable Event event, boolean b) {
+        return "mark" + players.toString(event, b) + " afk with message" + afkMessage.toString(event, b);
     }
 }

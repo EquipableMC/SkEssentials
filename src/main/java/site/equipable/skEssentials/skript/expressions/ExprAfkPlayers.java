@@ -57,12 +57,12 @@ public class ExprAfkPlayers extends SimpleExpression<Player> {
     }
 
     @Override
-    public String toString(@Nullable Event event, boolean b) {
-        return "all afk players";
+    public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, ParseResult parseResult) {
+        return true;
     }
 
     @Override
-    public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, ParseResult parseResult) {
-        return true;
+    public String toString(@Nullable Event event, boolean b) {
+        return "all afk players";
     }
 }

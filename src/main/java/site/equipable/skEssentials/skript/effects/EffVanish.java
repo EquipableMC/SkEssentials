@@ -45,14 +45,14 @@ public class EffVanish extends Effect {
     }
 
     @Override
-    public String toString(@Nullable Event event, boolean b) {
-        return "vanish" + players.toString(event, b);
-    }
-
-    @Override
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
         players = (Expression<Player>) exprs[0];
         vanish = matchedPattern < 2;
         return true;
+    }
+
+    @Override
+    public String toString(@Nullable Event event, boolean b) {
+        return "vanish" + players.toString(event, b);
     }
 }

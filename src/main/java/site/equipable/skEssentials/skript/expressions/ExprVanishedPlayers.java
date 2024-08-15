@@ -56,12 +56,12 @@ public class ExprVanishedPlayers extends SimpleExpression<Player> {
     }
 
     @Override
-    public String toString(@Nullable Event event, boolean b) {
-        return "all vanished players";
+    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
+        return true;
     }
 
     @Override
-    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
-        return true;
+    public String toString(@Nullable Event event, boolean b) {
+        return "all vanished players";
     }
 }
