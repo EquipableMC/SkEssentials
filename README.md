@@ -11,7 +11,7 @@ Found an issue with SkEssentials or want to suggest something to get added? Simp
 
 # Documentation
 
-[![Get on skUnity](https://docs.skunity.com/skunity/library/Docs/Assets/assets/images/buttons/v2/get-the-syntax-black.png)](https://docs.skunity.com/syntax/search/addon:SkEssentials)
+[![Get on skUnity](https://docs.skunity.com/skunity/library/Docs/Assets/assets/images/buttons/v2/get-the-syntax-black.png)](https://docs.skunity.com/syntax/search/addon:SkEssentials) [![SkriptHubViewTheDocs](http://skripthub.net/static/addon/ViewTheDocsButton.png)](http://skripthub.net/docs/?addon=SkEssentials)
 
 # Contact
 
