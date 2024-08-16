@@ -71,4 +71,5 @@ public class ExprNickPlayers extends SimplePropertyExpression<Player, String> {
     protected String getPropertyName() {
         return "nickname";
     }
+
 }
