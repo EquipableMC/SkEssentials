@@ -25,7 +25,7 @@ import java.util.List;
 public class ExprGodModePlayers extends SimpleExpression<Player> {
 
     static {
-        Skript.registerExpression(ExprGodModePlayers.class, Player.class, ExpressionType.SIMPLE, "[all] [[of] the] god mode players");
+        Skript.registerExpression(ExprGodModePlayers.class, Player.class, ExpressionType.SIMPLE, "players (in|with) god mode");
     }
 
     @Override
@@ -33,15 +33,17 @@ public class ExprGodModePlayers extends SimpleExpression<Player> {
         return true;
     }
 
+
+
     @Override
     protected @Nullable Player[] get(Event event) {
-        List<Player> godModePlayers = new ArrayList<>();
+        List<Player> godPlayers = new ArrayList<>();
         for (User user : SkEssentials.essentials.getOnlineUsers()) {
-            if (user.isGodModeEnabled()) {
-                godModePlayers.add(user.getBase());
+            if (user != null) {
+                godPlayers.add(user.getBase());
             }
         }
-        return godModePlayers.toArray(new Player[0]);
+        return godPlayers.toArray(new Player[0]);
     }
 
     @Override
@@ -56,6 +58,6 @@ public class ExprGodModePlayers extends SimpleExpression<Player> {
 
     @Override
     public String toString(@Nullable Event event, boolean b) {
-        return "all gode mode players";
+        return "all god mode players";
     }
 }

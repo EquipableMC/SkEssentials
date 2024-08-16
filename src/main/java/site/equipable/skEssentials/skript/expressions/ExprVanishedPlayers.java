@@ -11,6 +11,7 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import com.earth2me.essentials.User;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
@@ -25,7 +26,7 @@ import java.util.List;
 public class ExprVanishedPlayers extends SimpleExpression<Player> {
 
     static {
-        Skript.registerExpression(ExprVanishedPlayers.class, Player.class, ExpressionType.SIMPLE, "[all] [[of] the] vanish[ed] players");
+        Skript.registerExpression(ExprVanishedPlayers.class, Player.class, ExpressionType.SIMPLE, "[all [[of] the]|the] vanish[ed] players");
     }
 
     @Override
@@ -35,9 +36,12 @@ public class ExprVanishedPlayers extends SimpleExpression<Player> {
 
     @Override
     protected @Nullable Player[] get(Event event) {
+        List<String> vanishedNames = SkEssentials.essentials.getVanishedPlayers();
         List<Player> vanishedPlayers = new ArrayList<>();
-        for (User user : SkEssentials.essentials.getOnlineUsers()) {
-            if (user.isVanished()) {
+        for (String playerName : vanishedNames) {
+            Player player = Bukkit.getPlayer(playerName);
+            User user = SkEssentials.essentials.getUser(player);
+            if (user != null) {
                 vanishedPlayers.add(user.getBase());
             }
         }

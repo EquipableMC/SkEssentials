@@ -29,7 +29,7 @@ import java.util.List;
 public class ExprAfkPlayers extends SimpleExpression<Player> {
 
     static {
-        Skript.registerExpression(ExprAfkPlayers.class, Player.class, ExpressionType.SIMPLE, "[all] [[of] the] (afk|away from keyboard|idle) players");
+        Skript.registerExpression(ExprAfkPlayers.class, Player.class, ExpressionType.SIMPLE, "[all [[of] the]|the] (afk|away from keyboard|idle) players");
     }
 
     @Override
