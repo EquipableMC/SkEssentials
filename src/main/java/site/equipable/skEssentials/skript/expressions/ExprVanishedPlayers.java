@@ -26,7 +26,8 @@ import java.util.List;
 public class ExprVanishedPlayers extends SimpleExpression<Player> {
 
     static {
-        Skript.registerExpression(ExprVanishedPlayers.class, Player.class, ExpressionType.SIMPLE, "[all [[of] the]|the] vanish[ed] players");
+        Skript.registerExpression(ExprVanishedPlayers.class, Player.class, ExpressionType.SIMPLE, "[all [[of] the]|the] vanish[ed] players",
+                "players (in|with) vanish mode");
     }
 
     @Override
