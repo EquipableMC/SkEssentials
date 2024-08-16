@@ -26,7 +26,7 @@ public class ExprGodModePlayers extends SimpleExpression<Player> {
 
     static {
         Skript.registerExpression(ExprGodModePlayers.class, Player.class, ExpressionType.SIMPLE, "[all [[of] the]|the] god mode players,",
-                "all the players (in|with) god mode");
+                "[all [[of] the]|the] players (in|with) god mode");
     }
 
     @Override
