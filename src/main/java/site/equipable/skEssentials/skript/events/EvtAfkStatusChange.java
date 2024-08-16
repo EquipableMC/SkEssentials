@@ -7,7 +7,7 @@ import ch.njol.skript.util.Getter;
 import net.ess3.api.events.AfkStatusChangeEvent;
 import net.ess3.api.events.AfkStatusChangeEvent.Cause;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.Nullable;;
+import org.jetbrains.annotations.Nullable;
 
 public class EvtAfkStatusChange extends SimpleEvent {
 

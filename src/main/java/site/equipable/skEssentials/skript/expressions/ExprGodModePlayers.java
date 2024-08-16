@@ -11,7 +11,6 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import com.earth2me.essentials.User;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
@@ -19,31 +18,33 @@ import site.equipable.skEssentials.SkEssentials;
 import java.util.ArrayList;
 import java.util.List;
 
-@Name("All Vanished Players")
-@Description("The list of vanished players on the server.")
-@Examples({"send \"%all of the vanished players%\""})
+@Name("All God Mode Players")
+@Description("The list of players in god mode on the server.")
+@Examples({"send \"%all of the god mode players%\""})
 @Since("1.0.0")
-public class ExprVanishedPlayers extends SimpleExpression<Player> {
+public class ExprGodModePlayers extends SimpleExpression<Player> {
 
     static {
-        Skript.registerExpression(ExprVanishedPlayers.class, Player.class, ExpressionType.SIMPLE, "[all [[of] the]|the] vanish[ed] players",
-                "[all [[of] the]|the] players (in|with) vanish mode");
+        Skript.registerExpression(ExprGodModePlayers.class, Player.class, ExpressionType.SIMPLE, "[all [[of] the]|the] god mode players,",
+                "[all [[of] the]|the] players (in|with) god mode");
     }
 
     @Override
-    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
+    public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, ParseResult parseResult) {
         return true;
     }
 
+
+
     @Override
     protected @Nullable Player[] get(Event event) {
-        List<Player> vanishedPlayers = new ArrayList<>();
+        List<Player> godPlayers = new ArrayList<>();
         for (User user : SkEssentials.essentials.getOnlineUsers()) {
-            if (user.isVanished()) {
-                vanishedPlayers.add(user.getBase());
+            if (user != null) {
+                godPlayers.add(user.getBase());
             }
         }
-        return vanishedPlayers.toArray(new Player[0]);
+        return godPlayers.toArray(new Player[0]);
     }
 
     @Override
@@ -57,7 +58,7 @@ public class ExprVanishedPlayers extends SimpleExpression<Player> {
     }
 
     @Override
-    public String toString(@Nullable Event event, boolean debug) {
-        return "all vanished players";
+    public String toString(@Nullable Event event, boolean b) {
+        return "all god mode players";
     }
 }
