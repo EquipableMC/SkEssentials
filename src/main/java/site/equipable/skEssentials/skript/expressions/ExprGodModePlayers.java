@@ -18,30 +18,30 @@ import site.equipable.skEssentials.SkEssentials;
 import java.util.ArrayList;
 import java.util.List;
 
-@Name("All Vanished Players")
-@Description("The list of vanished players on the server.")
-@Examples({"send \"%all of the vanished players%\""})
+@Name("All God Mode Players")
+@Description("The list of players in god mode on the server.")
+@Examples({"send \"%all of the god mode players%\""})
 @Since("1.0.0")
-public class ExprVanishedPlayers extends SimpleExpression<Player> {
+public class ExprGodModePlayers extends SimpleExpression<Player> {
 
     static {
-        Skript.registerExpression(ExprVanishedPlayers.class, Player.class, ExpressionType.SIMPLE, "[all] [[of] the] vanish[ed] players");
+        Skript.registerExpression(ExprGodModePlayers.class, Player.class, ExpressionType.SIMPLE, "[all] [[of] the] god mode players");
     }
 
     @Override
-    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
+    public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, ParseResult parseResult) {
         return true;
     }
 
     @Override
     protected @Nullable Player[] get(Event event) {
-        List<Player> vanishedPlayers = new ArrayList<>();
+        List<Player> godModePlayers = new ArrayList<>();
         for (User user : SkEssentials.essentials.getOnlineUsers()) {
-            if (user.isVanished()) {
-                vanishedPlayers.add(user.getBase());
+            if (user.isGodModeEnabled()) {
+                godModePlayers.add(user.getBase());
             }
         }
-        return vanishedPlayers.toArray(new Player[0]);
+        return godModePlayers.toArray(new Player[0]);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class ExprVanishedPlayers extends SimpleExpression<Player> {
     }
 
     @Override
-    public String toString(@Nullable Event event, boolean debug) {
-        return "all vanished players";
+    public String toString(@Nullable Event event, boolean b) {
+        return "all gode mode players";
     }
 }

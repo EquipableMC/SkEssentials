@@ -22,14 +22,14 @@ import site.equipable.skEssentials.SkEssentials;
 import java.util.ArrayList;
 import java.util.List;
 
-@Name("Afk Players")
+@Name("All Afk Players")
 @Description("The list of afk players on the server.")
 @Examples({"send \"%all of the afk players%\""})
 @Since("1.0.0")
 public class ExprAfkPlayers extends SimpleExpression<Player> {
 
     static {
-        Skript.registerExpression(ExprAfkPlayers.class, Player.class, ExpressionType.SIMPLE, "[all [[of] the]|the] (afk|away from keyboard|idle) players");
+        Skript.registerExpression(ExprAfkPlayers.class, Player.class, ExpressionType.SIMPLE, "[all] [[of] the] (afk|away from keyboard|idle) players");
     }
 
     @Override
@@ -40,12 +40,9 @@ public class ExprAfkPlayers extends SimpleExpression<Player> {
     @Override
     protected @Nullable Player[] get(Event event) {
         List<Player> afkPlayers = new ArrayList<>();
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            User user = SkEssentials.essentials.getUser(player);
-            if (user != null) {
-                if (user.isAfk()) {
-                    afkPlayers.add(player);
-                }
+        for (User user : SkEssentials.essentials.getOnlineUsers()) {
+            if (user.isAfk()) {
+                afkPlayers.add(user.getBase());
             }
         }
         return afkPlayers.toArray(new Player[0]);
