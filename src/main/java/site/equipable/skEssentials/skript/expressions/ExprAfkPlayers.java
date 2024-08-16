@@ -30,7 +30,7 @@ public class ExprAfkPlayers extends SimpleExpression<Player> {
 
     static {
         Skript.registerExpression(ExprAfkPlayers.class, Player.class, ExpressionType.SIMPLE, "[all [[of] the]|the] (afk|away from keyboard|idle) players",
-                "players (in|with) (afk|away from keyboard|idle) (status|state|mode)");
+                "all the players (in|with) (afk|away from keyboard|idle) (status|state|mode)");
     }
 
     @Override
