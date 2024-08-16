@@ -37,12 +37,9 @@ public class ExprVanishedPlayers extends SimpleExpression<Player> {
 
     @Override
     protected @Nullable Player[] get(Event event) {
-        List<String> vanishedNames = SkEssentials.essentials.getVanishedPlayers();
         List<Player> vanishedPlayers = new ArrayList<>();
-        for (String playerName : vanishedNames) {
-            Player player = Bukkit.getPlayer(playerName);
-            User user = SkEssentials.essentials.getUser(player);
-            if (user != null) {
+        for (User user : SkEssentials.essentials.getOnlineUsers()) {
+            if (user.isVanished()) {
                 vanishedPlayers.add(user.getBase());
             }
         }
