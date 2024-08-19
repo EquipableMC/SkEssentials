@@ -3,7 +3,7 @@ This is a skript addon for the widely used plugin called Essentials.
 
 # About SkEssentials
 
-SkEssentials was made to simply make your life easier for using features from SkEssentials in Skript instead of having to do it with Skript-reflect. You can put people in vanish, afk people, and more coming soon.
+SkEssentials was made to simply make your life easier for using features from Essentials in Skript instead of having to do it with Skript-reflect. You can put people in vanish, afk people, and more coming soon.
 
 # Issues/Suggestions
 
