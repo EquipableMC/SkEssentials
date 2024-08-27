@@ -28,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
 public class ExprNick extends SimplePropertyExpression<User, String> {
 
     static {
-        register(ExprNick.class, String.class, "essentials[x] [:full] nick[name]", "users");
+        register(ExprNick.class, String.class, "essentials[x] [:full] nick[name]", "essentialsusers");
     }
 
     private boolean fullNick;

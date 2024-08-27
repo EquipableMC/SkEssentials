@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 public class CondVanished extends PropertyCondition<User> {
 
     static {
-        register(CondVanished.class, PropertyType.BE, "(in vanish mode|vanished)", "users");
+        register(CondVanished.class, PropertyType.BE, "(in vanish mode|vanished)", "essentialsusers");
     }
 
     @Override

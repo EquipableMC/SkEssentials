@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 public class CondAfk extends PropertyCondition<User> {
 
     static {
-        register(CondAfk.class, PropertyType.BE, "(afk|away from keyboard|idle)", "users");
+        register(CondAfk.class, PropertyType.BE, "(afk|away from keyboard|idle)", "essentialsusers");
     }
 
     @Override
