@@ -6,30 +6,29 @@ import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
 import com.earth2me.essentials.User;
-import org.bukkit.entity.Player;
-import site.equipable.skEssentials.SkEssentials;
+import org.jetbrains.annotations.NotNull;
 
-@Name("is Vanished")
-@Description("Check if a player is vanished or not")
-@Examples("if player is in vanish:")
+@Name("Is Vanished")
+@Description("Checks whether or not a player is vanished.")
+@Examples({
+        "if player is vanished:",
+            "\tbroadcast \"%player% is vanished!\""
+})
 @Since("1.0.0")
-public class CondVanished extends PropertyCondition<Player> {
+public class CondVanished extends PropertyCondition<User> {
 
     static {
-        register(CondVanished.class, PropertyType.BE, "[in] vanish[ed]", "players");
+        register(CondVanished.class, PropertyType.BE, "(in vanish mode|vanished)", "users");
     }
 
     @Override
-    public boolean check(Player player) {
-        User user = SkEssentials.essentials.getUser(player);
-        if (user != null) {
-            return user.isVanished();
-        }
-        return false;
+    public boolean check(User user) {
+        return user.isVanished();
     }
 
     @Override
-    protected String getPropertyName() {
-        return "Vanished";
+    protected @NotNull String getPropertyName() {
+        return "vanished";
     }
+
 }
