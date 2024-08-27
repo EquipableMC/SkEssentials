@@ -10,48 +10,47 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import com.earth2me.essentials.User;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import site.equipable.skEssentials.SkEssentials;
 
 @Name("Vanish Player")
 @Description("Vanish or unvanish a player.")
-@Examples({"vanish player"})
+@Examples({
+        "vanish player",
+        "make all players unvanish"
+})
 @Since("1.0.0")
 public class EffVanish extends Effect {
 
     static {
         Skript.registerEffect(EffVanish.class,
-                "vanish %players%",
-                "make %players% vanish",
-                "unvanish %players%",
-                "make %players% unvanish");
+                "[:un]vanish %users%",
+                "make %users% [:un]vanish");
     }
 
-    private Expression<Player> players;
+    private Expression<User> users;
 
     private boolean vanish;
 
     @Override
+    @SuppressWarnings({"unchecked", "NullableProblems"})
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
-        players = (Expression<Player>) exprs[0];
-        vanish = matchedPattern < 2;
+        users = (Expression<User>) exprs[0];
+        vanish = !parseResult.hasTag("un");
         return true;
     }
 
     @Override
+    @SuppressWarnings("NullableProblems")
     protected void execute(Event event) {
-        for (Player player : players.getArray(event)) {
-            User user = SkEssentials.essentials.getUser(player);
-            if (user != null) {
-                user.setVanished(vanish);
-            }
+        for (User user : users.getArray(event)) {
+            user.setVanished(vanish);
         }
     }
 
     @Override
-    public String toString(@Nullable Event event, boolean debug) {
-        return "vanish " + players.toString(event, debug);
+    public @NotNull String toString(@Nullable Event event, boolean debug) {
+        return (vanish ? "" : "un") + "vanish " + users.toString(event, debug);
     }
 }
