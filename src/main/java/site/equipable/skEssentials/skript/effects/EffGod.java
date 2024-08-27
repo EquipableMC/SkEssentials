@@ -10,46 +10,48 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import com.earth2me.essentials.User;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import site.equipable.skEssentials.SkEssentials;
 
 @Name("God Mode")
-@Description("Enable or disable a player's god mode")
-@Examples({"enable god mode of player"})
+@Description("Enable or disable a player's god mode.")
+@Examples({
+        "enable god mode of player",
+        "disable god mode for all players"
+})
 @Since("1.0.0")
 public class EffGod extends Effect {
 
     static {
         Skript.registerEffect(EffGod.class,
-                "enable god mode (for|of) %players%",
-                "disable god mode (for|of) %players%");
+                "enable god mode (for|of) %users%",
+                "disable god mode (for|of) %users%");
     }
 
-    private Expression<Player> players;
+    private Expression<User> users;
 
     private boolean god;
 
     @Override
+    @SuppressWarnings({"unchecked", "NullableProblems"})
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
-        players = (Expression<Player>) exprs[0];
-        god = matchedPattern < 1;
+        users = (Expression<User>) exprs[0];
+        god = matchedPattern == 0;
         return true;
     }
 
     @Override
+    @SuppressWarnings("NullableProblems")
     protected void execute(Event event) {
-        for (Player player : players.getArray(event)) {
-            User user = SkEssentials.essentials.getUser(player);
-            if (user != null) {
-                user.setGodModeEnabled(god);
-            }
+        for (User user : users.getArray(event)) {
+            user.setGodModeEnabled(god);
         }
     }
 
     @Override
-    public String toString(@Nullable Event event, boolean debug) {
-        return "god mode of " + players.toString(event,debug);
+    public @NotNull String toString(@Nullable Event event, boolean debug) {
+        return (god ? "enable" : "disable") + " god mode of " + users.toString(event,debug);
     }
+
 }
