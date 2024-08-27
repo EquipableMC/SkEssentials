@@ -16,7 +16,8 @@ public class EvtBalanceChange extends SimpleEvent {
                 .description("Fired when a player's balance changes with Essentials.")
                 .examples("on player balance change:")
                 .since("1.0.0");
-        EventValues.registerEventValue(UserBalanceUpdateEvent.class, Number.class, new Getter<Number, UserBalanceUpdateEvent>() {
+
+        EventValues.registerEventValue(UserBalanceUpdateEvent.class, Number.class, new Getter<>() {
             public @NotNull Number get(final UserBalanceUpdateEvent event) {
                 if (event != null) {
                     return event.getNewBalance().subtract(event.getOldBalance());
@@ -24,7 +25,8 @@ public class EvtBalanceChange extends SimpleEvent {
                 return 0;
             }
         }, EventValues.TIME_NOW);
-        EventValues.registerEventValue(UserBalanceUpdateEvent.class, Player.class, new Getter<Player, UserBalanceUpdateEvent>() {
+
+        EventValues.registerEventValue(UserBalanceUpdateEvent.class, Player.class, new Getter<>() {
             @Override
             public @Nullable Player get(UserBalanceUpdateEvent userBalanceUpdateEvent) {
                 if (userBalanceUpdateEvent != null) {
@@ -34,4 +36,5 @@ public class EvtBalanceChange extends SimpleEvent {
             }
         }, EventValues.TIME_NOW);
     }
+
 }
