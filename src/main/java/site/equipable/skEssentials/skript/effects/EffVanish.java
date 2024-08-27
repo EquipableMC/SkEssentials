@@ -25,8 +25,8 @@ public class EffVanish extends Effect {
 
     static {
         Skript.registerEffect(EffVanish.class,
-                "[:un]vanish %users%",
-                "make %users% [:un]vanish");
+                "[:un]vanish %essentialsusers%",
+                "make %essentialsusers% [:un]vanish");
     }
 
     private Expression<User> users;

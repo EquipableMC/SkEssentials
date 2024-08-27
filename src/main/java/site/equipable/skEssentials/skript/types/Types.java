@@ -19,7 +19,7 @@ public class Types {
                 .description("All of the supported Essentials AFK causes.")
                 .since("1.0.0"));
 
-        Classes.registerClass(new ClassInfo<>(User.class, "user")
+        Classes.registerClass(new ClassInfo<>(User.class, "essentialsuser")
                 .user("(essentialsx? ?)?users?")
                 .name("Essentials User")
                 .description("Represents an Essentials User object.")

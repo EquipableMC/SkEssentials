@@ -25,8 +25,8 @@ public class EffGod extends Effect {
 
     static {
         Skript.registerEffect(EffGod.class,
-                "enable god mode (for|of) %users%",
-                "disable god mode (for|of) %users%");
+                "enable god mode (for|of) %essentialsusers%",
+                "disable god mode (for|of) %essentialsusers%");
     }
 
     private Expression<User> users;

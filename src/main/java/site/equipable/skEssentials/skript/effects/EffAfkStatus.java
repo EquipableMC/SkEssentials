@@ -25,9 +25,9 @@ import org.jetbrains.annotations.UnknownNullability;
 public class EffAfkStatus extends Effect {
 
     static {
-        Skript.registerEffect(EffAfkStatus.class, "[:un]mark %users% as [:not] (afk|away from keyboard|idle) [(due to|with reason|because [of]) %-string%]",
-                "(afk|away from keyboard|idle) %users% [(due to|with reason|because [of]) %-string%]",
-                "un[-](afk|away from keyboard|idle) %users%");
+        Skript.registerEffect(EffAfkStatus.class, "[:un]mark %essentialsusers% as [:not] (afk|away from keyboard|idle) [(due to|with reason|because [of]) %-string%]",
+                "(afk|away from keyboard|idle) %essentialsusers% [(due to|with reason|because [of]) %-string%]",
+                "un[-](afk|away from keyboard|idle) %essentialsusers%");
     }
 
     private Expression<User> users;
