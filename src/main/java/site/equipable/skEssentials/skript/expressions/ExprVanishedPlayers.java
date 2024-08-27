@@ -11,23 +11,26 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import com.earth2me.essentials.User;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import site.equipable.skEssentials.SkEssentials;
 import java.util.ArrayList;
 import java.util.List;
 
-@Name("All Vanished Players")
-@Description("The list of vanished players on the server.")
-@Examples({"send \"%all of the vanished players%\""})
+@Name("Vanished Players")
+@Description("Gets all the vanished players on the server.")
+@Examples(
+        "send \"Vanished players: %all of the vanished players%\""
+)
 @Since("1.0.0")
 public class ExprVanishedPlayers extends SimpleExpression<Player> {
 
     static {
-        Skript.registerExpression(ExprVanishedPlayers.class, Player.class, ExpressionType.SIMPLE, "[all [[of] the]|the] vanish[ed] players",
-                "[all [[of] the]|the] players (in|with) vanish mode");
+        Skript.registerExpression(ExprVanishedPlayers.class, Player.class, ExpressionType.SIMPLE,
+                "[all [[of] the]|the] vanish[ed] players",
+                "[all [[of] the]|the] players (in|with) vanish [mode]");
     }
 
     @Override
@@ -36,6 +39,7 @@ public class ExprVanishedPlayers extends SimpleExpression<Player> {
     }
 
     @Override
+    @SuppressWarnings("NullableProblems")
     protected @Nullable Player[] get(Event event) {
         List<Player> vanishedPlayers = new ArrayList<>();
         for (User user : SkEssentials.essentials.getOnlineUsers()) {
@@ -43,7 +47,7 @@ public class ExprVanishedPlayers extends SimpleExpression<Player> {
                 vanishedPlayers.add(user.getBase());
             }
         }
-        return vanishedPlayers.toArray(new Player[0]);
+        return vanishedPlayers.toArray(Player[]::new);
     }
 
     @Override
@@ -52,12 +56,13 @@ public class ExprVanishedPlayers extends SimpleExpression<Player> {
     }
 
     @Override
-    public Class<? extends Player> getReturnType() {
+    public @NotNull Class<? extends Player> getReturnType() {
         return Player.class;
     }
 
     @Override
-    public String toString(@Nullable Event event, boolean debug) {
+    public @NotNull String toString(@Nullable Event event, boolean debug) {
         return "all vanished players";
     }
+
 }
