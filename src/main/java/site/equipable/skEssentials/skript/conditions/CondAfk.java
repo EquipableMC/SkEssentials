@@ -6,30 +6,29 @@ import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
 import com.earth2me.essentials.User;
-import org.bukkit.entity.Player;
-import site.equipable.skEssentials.SkEssentials;
+import org.jetbrains.annotations.NotNull;
 
-@Name("is AFK")
-@Description("Checks if the player is afk or not")
-@Examples({"if player is away from keyboard:"})
+@Name("Is AFK")
+@Description("Checks whether or not a player is AFK.")
+@Examples({
+        "if player is afk:",
+            "\tbroadcast \"%player% is AFK!\""
+})
 @Since("1.0.0")
-public class CondAfk extends PropertyCondition<Player> {
+public class CondAfk extends PropertyCondition<User> {
 
     static {
-        register(CondAfk.class, PropertyType.BE, "(afk|away from keyboard|idle)", "players");
+        register(CondAfk.class, PropertyType.BE, "(afk|away from keyboard|idle)", "essentialsusers");
     }
 
     @Override
-    public boolean check(Player player) {
-        User user = SkEssentials.essentials.getUser(player);
-        if (user != null) {
-            return user.isAfk();
-        }
-        return false;
+    public boolean check(User user) {
+        return user.isAfk();
     }
 
     @Override
-    protected String getPropertyName() {
-        return "condition afk players";
+    protected @NotNull String getPropertyName() {
+        return "afk";
     }
+
 }

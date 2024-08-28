@@ -13,16 +13,18 @@ public class EvtAfkStatusChange extends SimpleEvent {
 
     static {
         Skript.registerEvent("Essentials Player AFK Status Change", EvtAfkStatusChange.class, AfkStatusChangeEvent.class, "[essentials[x]] [player] (afk|away from keyboard|idle) (status change|toggle)")
-            .description("Fired when a player's AFK status changes:")
-            .examples("on AFK status change:")
-            .since("1.0.0");
-        EventValues.registerEventValue(AfkStatusChangeEvent.class, Cause.class, new Getter<Cause, AfkStatusChangeEvent>() {
+                .description("Fired when a player's AFK status changes:")
+                .examples("on AFK status change:")
+                .since("1.0.0");
+
+        EventValues.registerEventValue(AfkStatusChangeEvent.class, Cause.class, new Getter<>() {
             @Override
             public @Nullable Cause get(AfkStatusChangeEvent afkStatusChangeEvent) {
                 return afkStatusChangeEvent.getCause();
             }
         }, EventValues.TIME_NOW);
-        EventValues.registerEventValue(AfkStatusChangeEvent.class, Player.class, new Getter<Player, AfkStatusChangeEvent>() {
+
+        EventValues.registerEventValue(AfkStatusChangeEvent.class, Player.class, new Getter<>() {
             @Override
             public @Nullable Player get(AfkStatusChangeEvent afkStatusChangeEvent) {
                 return afkStatusChangeEvent.getAffected().getBase();

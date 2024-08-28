@@ -11,65 +11,66 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import com.earth2me.essentials.User;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import site.equipable.skEssentials.SkEssentials;
-
-
 
 @Name("Nick Players")
-@Description("Set the essentials nickname of a player.\n NOTE: You MUST specify essentials for it to work through Essentials.")
-@Examples({"set the nickname of player to \"I am a cool person!\""})
+@Description({
+        "Set the Essentials nickname of a player.",
+        "NOTE: You MUST specify 'essentials' for it to work through Essentials.",
+        "NOTE: You cannot set the 'full' nickname of a player."
+})
+@Examples(
+        "set the essentials nickname of player to \"Cool Person\""
+)
 @Since("1.0.0")
-public class ExprNickPlayers extends SimplePropertyExpression<Player, String> {
+public class ExprNick extends SimplePropertyExpression<User, String> {
 
     static {
-        register(ExprNickPlayers.class, String.class, "essentials[x] [:full] nick[name]", "players");
+        register(ExprNick.class, String.class, "essentials[x] [:full] nick[name]", "essentialsusers");
     }
 
     private boolean fullNick;
 
+    @Override
+    @SuppressWarnings("NullableProblems")
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
         fullNick = parseResult.hasTag("full");
         return super.init(exprs, matchedPattern, isDelayed, parseResult);
     }
 
     @Override
-    public @Nullable String convert(Player player) {
-        User user = SkEssentials.essentials.getUser(player);
-        if (user != null) {
-            return fullNick ? user.getNick() : user.getNickname();
-        }
-        return null;
+    public @Nullable String convert(User user) {
+        return fullNick ? user.getNick() : user.getNickname();
     }
 
+    @Override
+    @SuppressWarnings("NullableProblems")
     public Class<?>[] acceptChange(ChangeMode mode) {
-        if (mode == ChangeMode.SET || mode == ChangeMode.RESET && !fullNick) {
+        if (mode == ChangeMode.SET || (mode == ChangeMode.RESET && !fullNick)) {
             return CollectionUtils.array(String.class);
         }
         return null;
     }
 
-    public void change(Event event, @Nullable Object[] delta, ChangeMode mode) {
+    @Override
+    @SuppressWarnings("NullableProblems")
+    public void change(Event event, Object @Nullable [] delta, ChangeMode mode) {
         String nickName = delta != null ? (String) delta[0] : null;
-        for (Player player : getExpr().getArray(event)) {
-            User user = SkEssentials.essentials.getUser(player);
-            if (user != null) {
-                user.setNickname(nickName);
-            }
+        for (User user : getExpr().getArray(event)) {
+            user.setNickname(nickName);
         }
     }
 
     @Override
-    public Class<? extends String> getReturnType() {
+    public @NotNull Class<? extends String> getReturnType() {
         return String.class;
     }
 
     @Override
-    protected String getPropertyName() {
-        return "nickname";
+    protected @NotNull String getPropertyName() {
+        return "essentials nickname";
     }
 
 }

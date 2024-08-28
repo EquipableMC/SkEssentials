@@ -13,38 +13,42 @@ import ch.njol.util.Kleenean;
 import com.earth2me.essentials.User;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import site.equipable.skEssentials.SkEssentials;
 import java.util.ArrayList;
 import java.util.List;
 
-@Name("All God Mode Players")
-@Description("The list of players in god mode on the server.")
-@Examples({"send \"%all of the god mode players%\""})
+@Name("God Mode Players")
+@Description("Gets all the players in god mode on the server.")
+@Examples(
+        "send \"God mode players: %all of the god mode players%\""
+)
 @Since("1.0.0")
 public class ExprGodModePlayers extends SimpleExpression<Player> {
 
     static {
-        Skript.registerExpression(ExprGodModePlayers.class, Player.class, ExpressionType.SIMPLE, "[all [[of] the]|the] god mode players,",
+        Skript.registerExpression(ExprGodModePlayers.class, Player.class, ExpressionType.SIMPLE,
+                "[all [[of] the]|the] god mode players,",
                 "[all [[of] the]|the] players (in|with) god mode");
     }
 
     @Override
-    public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, ParseResult parseResult) {
+    @SuppressWarnings("NullableProblems")
+    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
         return true;
     }
 
-
-
     @Override
+    @SuppressWarnings("NullableProblems")
     protected @Nullable Player[] get(Event event) {
         List<Player> godPlayers = new ArrayList<>();
         for (User user : SkEssentials.essentials.getOnlineUsers()) {
-            if (user != null) {
+            if (user.isGodModeEnabled()) {
                 godPlayers.add(user.getBase());
             }
         }
-        return godPlayers.toArray(new Player[0]);
+        return godPlayers.toArray(Player[]::new);
     }
 
     @Override
@@ -53,12 +57,13 @@ public class ExprGodModePlayers extends SimpleExpression<Player> {
     }
 
     @Override
-    public Class<? extends Player> getReturnType() {
+    public @NotNull Class<? extends Player> getReturnType() {
         return Player.class;
     }
 
     @Override
-    public String toString(@Nullable Event event, boolean b) {
+    public @NotNull String toString(@Nullable Event event, boolean debug) {
         return "all god mode players";
     }
+
 }
