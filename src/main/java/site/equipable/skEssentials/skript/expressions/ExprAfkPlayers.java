@@ -16,7 +16,6 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import site.equipable.skEssentials.SkEssentials;
-
 import java.util.ArrayList;
 import java.util.List;
 
