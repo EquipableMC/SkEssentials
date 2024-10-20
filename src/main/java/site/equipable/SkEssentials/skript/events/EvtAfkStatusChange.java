@@ -1,4 +1,4 @@
-package site.equipable.skEssentials.skript.events;
+package site.equipable.SkEssentials.skript.events;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.util.SimpleEvent;

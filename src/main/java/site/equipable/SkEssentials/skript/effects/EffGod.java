@@ -1,4 +1,4 @@
-package site.equipable.skEssentials.skript.effects;
+package site.equipable.SkEssentials.skript.effects;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;
@@ -10,9 +10,11 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import com.earth2me.essentials.User;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import site.equipable.SkEssentials.SkEssentials;
 
 @Name("God Mode")
 @Description("Enable or disable a player's god mode.")
@@ -25,18 +27,18 @@ public class EffGod extends Effect {
 
     static {
         Skript.registerEffect(EffGod.class,
-                "enable god mode (for|of) %essentialsusers%",
-                "disable god mode (for|of) %essentialsusers%");
+                "enable god mode (for|of) %players%",
+                "disable god mode (for|of) %players%");
     }
 
-    private Expression<User> users;
+    private Expression<Player> users;
 
     private boolean god;
 
     @Override
     @SuppressWarnings({"unchecked", "NullableProblems"})
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
-        users = (Expression<User>) exprs[0];
+        users = (Expression<Player>) exprs[0];
         god = matchedPattern == 0;
         return true;
     }
@@ -44,7 +46,8 @@ public class EffGod extends Effect {
     @Override
     @SuppressWarnings("NullableProblems")
     protected void execute(Event event) {
-        for (User user : users.getArray(event)) {
+        for (Player player : users.getArray(event)) {
+            User user = SkEssentials.essentials.getUser(player);
             user.setGodModeEnabled(god);
         }
     }

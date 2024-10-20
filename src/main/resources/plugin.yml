@@ -1,6 +1,6 @@
 name: SkEssentials
 version: '@version@'
-main: site.equipable.skEssentials.SkEssentials
+main: site.equipable.SkEssentials.SkEssentials
 api-version: '1.19'
 loadAfter: [Skript]
 prefix: SkEssentials

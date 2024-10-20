@@ -1,4 +1,4 @@
-package site.equipable.skEssentials.skript.expressions;
+package site.equipable.SkEssentials.skript.expressions;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;
@@ -15,25 +15,26 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import site.equipable.skEssentials.SkEssentials;
+import site.equipable.SkEssentials.SkEssentials;
 import java.util.ArrayList;
 import java.util.List;
 
-@Name("Vanished Players")
-@Description("Gets all the vanished players on the server.")
+@Name("God Mode Players")
+@Description("Gets all the players in god mode on the server.")
 @Examples(
-        "send \"Vanished players: %all of the vanished players%\""
+        "send \"God mode players: %all of the god mode players%\""
 )
 @Since("1.0.0")
-public class ExprVanishedPlayers extends SimpleExpression<Player> {
+public class ExprGodModePlayers extends SimpleExpression<Player> {
 
     static {
-        Skript.registerExpression(ExprVanishedPlayers.class, Player.class, ExpressionType.SIMPLE,
-                "[all [[of] the]|the] vanish[ed] players",
-                "[all [[of] the]|the] players (in|with) vanish [mode]");
+        Skript.registerExpression(ExprGodModePlayers.class, Player.class, ExpressionType.SIMPLE,
+                "[all [[of] the]|the] god mode players,",
+                "[all [[of] the]|the] players (in|with) god mode");
     }
 
     @Override
+    @SuppressWarnings("NullableProblems")
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
         return true;
     }
@@ -41,13 +42,13 @@ public class ExprVanishedPlayers extends SimpleExpression<Player> {
     @Override
     @SuppressWarnings("NullableProblems")
     protected @Nullable Player[] get(Event event) {
-        List<Player> vanishedPlayers = new ArrayList<>();
+        List<Player> godPlayers = new ArrayList<>();
         for (User user : SkEssentials.essentials.getOnlineUsers()) {
-            if (user.isVanished()) {
-                vanishedPlayers.add(user.getBase());
+            if (user.isGodModeEnabled()) {
+                godPlayers.add(user.getBase());
             }
         }
-        return vanishedPlayers.toArray(Player[]::new);
+        return godPlayers.toArray(Player[]::new);
     }
 
     @Override
@@ -62,7 +63,7 @@ public class ExprVanishedPlayers extends SimpleExpression<Player> {
 
     @Override
     public @NotNull String toString(@Nullable Event event, boolean debug) {
-        return "all vanished players";
+        return "all god mode players";
     }
 
 }
