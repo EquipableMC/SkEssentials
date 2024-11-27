@@ -35,9 +35,9 @@ public class UpdateChecker implements Listener {
         if (player.hasPermission("SkEssentials.update.check") && latestVersion != null) {
             if (!currentVersion.equals(latestVersion)) {
                 player.sendMessage(" ");
-                player.sendRichMessage("<orange>[<orange>SkEssentials<orange>] <white>SkEssentials is <red><bold>OUTDATED</bold><white>!");
-                player.sendRichMessage("<orange>[<orange>SkEssentials<orange>] <white>New version: <gold>" + latestVersion);
-                player.sendRichMessage("<orange>[<orange>SkEssentials<orange>] <white>Download <gold><click:open_url:https://github.com/EquipableMC/SkEssentials/releases><hover:show_text:'<red>Click here to get the latest version!'>here<white>!</click>");
+                player.sendRichMessage("<gold>[<gold>SkEssentials<gold>] <white>SkEssentials is <red><bold>OUTDATED</bold><white>!");
+                player.sendRichMessage("<gold>[<golde>SkEssentials<gold>] <white>New version: <gold>" + latestVersion);
+                player.sendRichMessage("<gold>[<orange>SkEssentials<gold>] <white>Download <gold><click:open_url:https://github.com/EquipableMC/SkEssentials/releases><hover:show_text:'<red>Click here to get the latest version!'>here<white>!</click>");
                 player.sendMessage(" ");
             }
         }
