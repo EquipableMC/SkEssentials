@@ -16,8 +16,8 @@ public class Types {
                 .since("1.0.0"));
 
         EnumWrapper<IMessageRecipient.MessageResponse> PRIVATE_MESSAGE_ENUM = new EnumWrapper<>(IMessageRecipient.MessageResponse.class, "message response", null);
-        Classes.registerClass(PRIVATE_MESSAGE_ENUM.getClassInfo("privatemessagereponse")
-                .user("private message ?reponses?")
+        Classes.registerClass(PRIVATE_MESSAGE_ENUM.getClassInfo("privatemessageresponse")
+                .user("private message ?responses?")
                 .name("Essentials Private Message Response")
                 .description("All of the supported Essentials Private Message Responses")
                 .since("1.1.0"));
