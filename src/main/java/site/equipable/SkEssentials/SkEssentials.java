@@ -1,4 +1,4 @@
-package site.equipable.skEssentials;
+package site.equipable.SkEssentials;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
@@ -7,13 +7,19 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import site.equipable.skEssentials.skript.utils.Utilities;
+import site.equipable.SkEssentials.skript.utils.UpdateChecker;
+import site.equipable.SkEssentials.skript.utils.Utilities;
 
 import java.io.IOException;
 
 public final class SkEssentials extends JavaPlugin {
 
     public static Essentials essentials;
+    private static SkEssentials instance;
+
+    public static SkEssentials getInstance() {
+        return instance;
+    }
 
     @Override
     public void onEnable() {
@@ -37,7 +43,7 @@ public final class SkEssentials extends JavaPlugin {
             if (essentialsChecker != null) {
                 Utilities.log("&aEssentials was successfully found!");
                 essentials = (Essentials) essentialsChecker;
-                skriptAddon.loadClasses("site.equipable.skEssentials.skript");
+                skriptAddon.loadClasses("site.equipable.SkEssentials.skript");
             } else {
                 getLogger().severe("Could not find Essentials! Disabling SkEssentials...");
                 getServer().getPluginManager().disablePlugin(this);
@@ -46,7 +52,6 @@ public final class SkEssentials extends JavaPlugin {
         } catch (IOException e) {
             throw new RuntimeException("Failed to load SkEssentials:" + e);
         }
-
-
+        new UpdateChecker(this);
     }
 }

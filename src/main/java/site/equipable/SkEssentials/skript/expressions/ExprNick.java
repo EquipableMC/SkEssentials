@@ -1,4 +1,4 @@
-package site.equipable.skEssentials.skript.expressions;
+package site.equipable.SkEssentials.skript.expressions;
 
 import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.doc.Description;
@@ -11,24 +11,26 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import com.earth2me.essentials.User;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import site.equipable.SkEssentials.SkEssentials;
 
 @Name("Nick Players")
 @Description({
         "Set the Essentials nickname of a player.",
-        "NOTE: You MUST specify 'essentials' for it to work through Essentials.",
+        "NOTE: You MUST specify 'essentials' for it to work through SkEssentials and not Skript.",
         "NOTE: You cannot set the 'full' nickname of a player."
 })
 @Examples(
         "set the essentials nickname of player to \"Cool Person\""
 )
 @Since("1.0.0")
-public class ExprNick extends SimplePropertyExpression<User, String> {
+public class ExprNick extends SimplePropertyExpression<Player, String> {
 
     static {
-        register(ExprNick.class, String.class, "essentials[x] [:full] nick[name]", "essentialsusers");
+        register(ExprNick.class, String.class, "essentials[x] [:full] nick[name]", "player");
     }
 
     private boolean fullNick;
@@ -41,7 +43,8 @@ public class ExprNick extends SimplePropertyExpression<User, String> {
     }
 
     @Override
-    public @Nullable String convert(User user) {
+    public @Nullable String convert(Player player) {
+        User user = SkEssentials.essentials.getUser(player);
         return fullNick ? user.getNick() : user.getNickname();
     }
 
@@ -58,7 +61,8 @@ public class ExprNick extends SimplePropertyExpression<User, String> {
     @SuppressWarnings("NullableProblems")
     public void change(Event event, Object @Nullable [] delta, ChangeMode mode) {
         String nickName = delta != null ? (String) delta[0] : null;
-        for (User user : getExpr().getArray(event)) {
+        for (Player player : getExpr().getArray(event)) {
+            User user = SkEssentials.essentials.getUser(player);
             user.setNickname(nickName);
         }
     }

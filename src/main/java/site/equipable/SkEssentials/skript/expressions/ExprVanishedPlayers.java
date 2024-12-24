@@ -1,4 +1,4 @@
-package site.equipable.skEssentials.skript.expressions;
+package site.equipable.SkEssentials.skript.expressions;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;
@@ -15,7 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import site.equipable.skEssentials.SkEssentials;
+import site.equipable.SkEssentials.SkEssentials;
 import java.util.ArrayList;
 import java.util.List;
 

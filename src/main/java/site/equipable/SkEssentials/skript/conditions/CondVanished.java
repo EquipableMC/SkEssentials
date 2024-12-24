@@ -1,4 +1,4 @@
-package site.equipable.skEssentials.skript.conditions;
+package site.equipable.SkEssentials.skript.conditions;
 
 import ch.njol.skript.conditions.base.PropertyCondition;
 import ch.njol.skript.doc.Description;
@@ -6,7 +6,9 @@ import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
 import com.earth2me.essentials.User;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import site.equipable.SkEssentials.SkEssentials;
 
 @Name("Is Vanished")
 @Description("Checks whether or not a player is vanished.")
@@ -15,14 +17,15 @@ import org.jetbrains.annotations.NotNull;
             "\tbroadcast \"%player% is vanished!\""
 })
 @Since("1.0.0")
-public class CondVanished extends PropertyCondition<User> {
+public class CondVanished extends PropertyCondition<Player> {
 
     static {
-        register(CondVanished.class, PropertyType.BE, "(in vanish mode|vanished)", "essentialsusers");
+        register(CondVanished.class, PropertyType.BE, "(in vanish mode|vanished)", "players");
     }
 
     @Override
-    public boolean check(User user) {
+    public boolean check(Player player) {
+        User user = SkEssentials.essentials.getUser(player);
         return user.isVanished();
     }
 

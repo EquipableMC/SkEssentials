@@ -1,4 +1,4 @@
-package site.equipable.skEssentials.skript.utils;
+package site.equipable.SkEssentials.skript.utils;
 
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
