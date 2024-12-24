@@ -33,11 +33,11 @@ public class UpdateChecker implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if (player.hasPermission("SkEssentials.update.check") && latestVersion != null) {
-            if (!currentVersion.equals(latestVersion)) {
+            if (isVersionOutdated(currentVersion.replaceAll("[^0-9.]", ""), latestVersion)) {
                 player.sendMessage(" ");
                 player.sendRichMessage("<gold>[<gold>SkEssentials<gold>] <white>SkEssentials is <red><bold>OUTDATED</bold><white>!");
-                player.sendRichMessage("<gold>[<golde>SkEssentials<gold>] <white>New version: <gold>" + latestVersion);
-                player.sendRichMessage("<gold>[<orange>SkEssentials<gold>] <white>Download <gold><click:open_url:https://github.com/EquipableMC/SkEssentials/releases><hover:show_text:'<red>Click here to get the latest version!'>here<white>!</click>");
+                player.sendRichMessage("<gold>[<gold>SkEssentials<gold>] <white>New version: <gold>" + latestVersion);
+                player.sendRichMessage("<gold>[<gold>SkEssentials<gold>] <white>Download <gold><click:open_url:https://github.com/EquipableMC/SkEssentials/releases><hover:show_text:'<red>Click here to get the latest version!'>here<white>!</click>");
                 player.sendMessage(" ");
             }
         }
@@ -55,9 +55,9 @@ public class UpdateChecker implements Listener {
                 .thenAccept(body -> {
                     JsonObject jsonResponse = new Gson().fromJson(body, JsonObject.class);
                     if (jsonResponse != null && jsonResponse.has("tag_name")) {
-                        latestVersion = jsonResponse.get("tag_name").getAsString();
+                        latestVersion = jsonResponse.get("tag_name").getAsString().replaceAll("[^0-9.]", "");
 
-                        if (!currentVersion.equals(latestVersion)) {
+                        if (isVersionOutdated(currentVersion.replaceAll("[^0-9.]", ""), latestVersion)) {
                             Utilities.log("&cSkEssentials is not up to date!");
                             Utilities.log("&c - Current version: &6v" + currentVersion);
                             Utilities.log("&c - Available update: &6" + latestVersion);
@@ -75,4 +75,21 @@ public class UpdateChecker implements Listener {
                 });
     }
 
+    private boolean isVersionOutdated(String current, String latest) {
+        String[] currentParts = current.split("\\.");
+        String[] latestParts = latest.split("\\.");
+        int length = Math.max(currentParts.length, latestParts.length);
+
+        for (int i = 0; i < length; i++) {
+            int currentVersion = i < currentParts.length ? Integer.parseInt(currentParts[i]) : 0;
+            int latestVersion = i < latestParts.length ? Integer.parseInt(latestParts[i]) : 0;
+
+            if (currentVersion < latestVersion) {
+                return true;
+            } else if (currentVersion > latestVersion) {
+                return false;
+            }
+        }
+        return false;
+    }
 }
