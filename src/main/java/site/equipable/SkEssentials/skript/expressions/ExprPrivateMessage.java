@@ -32,11 +32,13 @@ public class ExprPrivateMessage extends SimpleExpression<String> {
     }
 
     private static String getMessage(@Nullable Event event) {
-        return switch (event) {
-            case PrivateMessagePreSendEvent privateMessagePreSendEvent -> privateMessagePreSendEvent.getMessage();
-            case PrivateMessageSentEvent privateMessageSentEvent -> privateMessageSentEvent.getMessage();
-            case null, default -> null;
-        };
+        if (event instanceof PrivateMessagePreSendEvent privateMessagePreSendEvent) {
+            return privateMessagePreSendEvent.getMessage();
+        } else if (event instanceof PrivateMessageSentEvent privateMessageSentEvent) {
+            return privateMessageSentEvent.getMessage();
+        } else {
+            return null;
+        }
     }
 
     @Override

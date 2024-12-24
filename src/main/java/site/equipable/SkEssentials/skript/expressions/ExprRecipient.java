@@ -42,34 +42,28 @@ public class ExprRecipient extends SimpleExpression<CommandSender> {
     }
 
     private static CommandSender getRecipient(@Nullable Event event) {
-        return switch (event) {
-            case PrivateMessagePreSendEvent privateMessagePreSendEvent -> {
-                Object sender = privateMessagePreSendEvent.getRecipient();
-                if (sender instanceof CommandSender commandSender) {
-                    yield commandSender;
-                } else if (sender instanceof User user) {
-                    yield user.getBase();
-                } else if (sender instanceof Console console) {
-                    yield console.getCommandSender();
-                } else {
-                    yield null;
-                }
+        if (event instanceof PrivateMessagePreSendEvent privateMessagePreSendEvent) {
+            Object sender = privateMessagePreSendEvent.getRecipient();
+            if (sender instanceof CommandSender commandSender) {
+                return commandSender;
+            } else if (sender instanceof User user) {
+                return user.getBase();
+            } else if (sender instanceof Console console) {
+                return console.getCommandSender();
             }
-            case PrivateMessageSentEvent privateMessageSentEvent -> {
-                Object sender = privateMessageSentEvent.getRecipient();
-                if (sender instanceof CommandSender commandSender) {
-                    yield commandSender;
-                } else if (sender instanceof User user) {
-                    yield user.getBase();
-                } else if (sender instanceof Console console) {
-                    yield console.getCommandSender();
-                } else {
-                    yield null;
-                }
+        } else if (event instanceof PrivateMessageSentEvent privateMessageSentEvent) {
+            Object sender = privateMessageSentEvent.getRecipient();
+            if (sender instanceof CommandSender commandSender) {
+                return commandSender;
+            } else if (sender instanceof User user) {
+                return user.getBase();
+            } else if (sender instanceof Console console) {
+                return console.getCommandSender();
             }
-            case null, default -> null;
-        };
+        }
+        return null;
     }
+
 
 
     @Override
