@@ -13,7 +13,9 @@ public class EvtJailStatusChange extends SimpleEvent {
                 .description("Fired when a player's jail status changes")
                 .examples("on jail status change:")
                 .since("1.2.0");
-        EventValues.registerEventValue(JailStatusChangeEvent.class, Player.class, event -> event.getAffected(), EventValues.TIME_NOW);
+
+        EventValues.registerEventValue(JailStatusChangeEvent.class, Player.class, event -> event.getAffected().getBase(), EventValues.TIME_NOW);
+        EventValues.registerEventValue(JailStatusChangeEvent.class, String.class, event -> event.getAffected().getJail(), EventValues.TIME_NOW);
 
     }
 }
