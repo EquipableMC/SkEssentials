@@ -10,7 +10,7 @@ public class EvtAfkStatusChange extends SimpleEvent {
 
     static {
         Skript.registerEvent("Essentials Player AFK Status Change", EvtAfkStatusChange.class, AfkStatusChangeEvent.class, "[essentials[x]] [player] (afk|away from keyboard|idle) (status change|toggle)")
-                .description("Fired when a player's AFK status changes:")
+                .description("Fired when a player's AFK status changes")
                 .examples("on AFK status change:")
                 .since("1.0.0");
 
