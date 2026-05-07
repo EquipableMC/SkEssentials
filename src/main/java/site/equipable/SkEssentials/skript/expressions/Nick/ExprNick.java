@@ -1,4 +1,4 @@
-package site.equipable.SkEssentials.skript.expressions;
+package site.equipable.SkEssentials.skript.expressions.Nick;
 
 import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.doc.Description;

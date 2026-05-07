@@ -1,4 +1,4 @@
-package site.equipable.SkEssentials.skript.expressions;
+package site.equipable.SkEssentials.skript.expressions.GodMode;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;

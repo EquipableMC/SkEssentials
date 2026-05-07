@@ -1,4 +1,4 @@
-package site.equipable.SkEssentials.skript.expressions;
+package site.equipable.SkEssentials.skript.expressions.AFK;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;
@@ -34,7 +34,6 @@ public class ExprAfkPlayers extends SimpleExpression<Player> {
     }
 
     @Override
-    @SuppressWarnings("NullableProblems")
     public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean kleenean, ParseResult parseResult) {
         return true;
     }

@@ -1,4 +1,4 @@
-package site.equipable.SkEssentials.skript.expressions;
+package site.equipable.SkEssentials.skript.expressions.Message;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Expression;

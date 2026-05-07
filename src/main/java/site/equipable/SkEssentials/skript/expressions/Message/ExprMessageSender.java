@@ -1,9 +1,10 @@
-package site.equipable.SkEssentials.skript.expressions;
+package site.equipable.SkEssentials.skript.expressions.Message;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
@@ -21,10 +22,11 @@ import org.jetbrains.annotations.Nullable;
 @Description("The person sending the private message.")
 @Examples({"on private message send:",
         "    set {_recipient} to message sender"})
-public class ExprSender extends SimpleExpression<CommandSender> {
+@Since("1.1.0")
+public class ExprMessageSender extends SimpleExpression<CommandSender> {
 
     static {
-        Skript.registerExpression(ExprSender.class, CommandSender.class, ExpressionType.SIMPLE, "[the] [private] message sender");
+        Skript.registerExpression(ExprMessageSender.class, CommandSender.class, ExpressionType.SIMPLE, "[the] [private] message sender");
     }
 
     @Override

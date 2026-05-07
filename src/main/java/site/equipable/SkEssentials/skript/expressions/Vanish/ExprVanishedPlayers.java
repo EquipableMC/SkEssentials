@@ -1,4 +1,4 @@
-package site.equipable.SkEssentials.skript.expressions;
+package site.equipable.SkEssentials.skript.expressions.Vanish;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.doc.Description;

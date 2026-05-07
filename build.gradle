@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'site.equipable'
-version = '1.1.0'
+version = '1.2.0'
 
 repositories {
     mavenCentral()
@@ -35,9 +35,9 @@ shadowJar {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.19.4-R0.1-SNAPSHOT")
-    compileOnly("com.github.SkriptLang:Skript:2.7.0")
-    compileOnly("net.essentialsx:EssentialsX:2.20.1")
+    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
+    compileOnly("com.github.SkriptLang:Skript:2.15.2")
+    compileOnly("net.essentialsx:EssentialsX:2.21.2")
     implementation("org.bstats:bstats-bukkit:3.0.2")
 }
 
